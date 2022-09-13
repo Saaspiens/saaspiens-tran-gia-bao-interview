@@ -14,7 +14,7 @@ export default class Customer {
     async getTotalFees() {
         let totalFees = 0;
         for (let i = 0; i < this.rentals.length; i++) {
-            totalFees += this.rentals[i].getFees();
+            totalFees += await this.rentals[i].getFees();
         }
 
         return `Customer ${this.name}'s total fees is ${totalFees}`;
@@ -24,7 +24,7 @@ export default class Customer {
         const output = [];
 
         for (let i = 0; i < this.rentals.length; i++) {
-            const fee = this.rentals[i].getFees();
+            const fee = await this.rentals[i].getFees();
             output.push(`Fees for Rental Number ${i + 1} is ${fee}`);
         }
 

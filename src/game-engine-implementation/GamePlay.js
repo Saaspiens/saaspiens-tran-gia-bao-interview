@@ -1,3 +1,6 @@
+import Hero from "./Hero";
+import Combat from "./Combat";
+
 export const Config = {
     hero: {
         maxHealth: 100,
@@ -18,5 +21,14 @@ export const Config = {
 
 export default class GamePlay {
     static fight(firstCharacter, secondCharacter) {
+        if (!(firstCharacter instanceof Hero) && !(secondCharacter instanceof Hero)) {
+            return;
+        }
+
+        const combat = new Combat(secondCharacter, firstCharacter);
+        do {
+            combat.turn();
+            combat.attack();
+        } while (!combat.isFinished())
     }
 }

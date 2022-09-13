@@ -9,14 +9,13 @@ export default class Rental {
         this.duration = duration;
     }
 
-    getFees() {
+    async getFees() {
         let fees = 0;
         for (let i = 0; i < this.cars.length; i++) {
-            let fee = getCarFees(this.cars[i].id);
+            let fee = await getCarFees(this.cars[i].id);
             fee *= this.duration;
             fees += fee;
         }
-
         return fees;
     }
 
